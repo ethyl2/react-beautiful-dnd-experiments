@@ -9,6 +9,8 @@ const Container = styled.div`
     border: 1px solid magenta;
     border-radius: 2px;
     color: white;
+    display: flex;
+    flex-direction: column;
     width: 30vw;
     @media (max-width: 500px) {
         width: 80vh;
@@ -22,7 +24,9 @@ const Title = styled.h3`
 const SongList = styled.div`
     padding: 8px;
     transition: background 0.2s ease;
-    background: ${props => props.isDraggingOver ? '#0E0E12': 'black'};
+    background: ${props => props.isDraggingOver ? 'purple': 'black'};
+    flex-grow: 1;
+    min-height: 100px;
 `;
 
 export default class Column extends React.Component {

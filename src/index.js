@@ -30,20 +30,51 @@ class App extends React.Component {
             return;
         }
 
-        const column = this.state.columns[source.droppableId];
-        const newSongIds = Array.from(column.songIds);
-        // splice(source index, num elements to delete)
-        newSongIds.splice(source.index, 1); //splice modifies the array (as well as returning a new array of what's been cut out)
-        // splice(destination index this time, delete 0 elements, elementToAdd)
-        newSongIds.splice(destination.index, 0, draggableId ); //opt 3rd parameter contains what you want to add
+        const columnStart = this.state.columns[source.droppableId];
+        const columnEnd = this.state.columns[destination.droppableId];
 
-        const newColumn = { ...column, songIds: newSongIds };
-        const newState = { ...this.state, columns: {
-            ...this.state.columns, [newColumn.id]: newColumn
-        }}
+        if (columnStart === columnEnd) {
+            const newSongIds = Array.from(columnStart.songIds);
+            // splice(source index, num elements to delete)
+            newSongIds.splice(source.index, 1); //splice modifies the array (as well as returning a new array of what's been cut out)
+            // splice(destination index this time, delete 0 elements, elementToAdd)
+            newSongIds.splice(destination.index, 0, draggableId ); //opt 3rd parameter contains what you want to add
 
+            const newColumn = { ...columnStart, songIds: newSongIds };
+            const newState = { ...this.state, columns: {
+                ...this.state.columns, [newColumn.id]: newColumn
+            }}
+
+            this.setState(newState);
+            return;
+        }
+
+        //Moving from one column to another column
+
+        const startSongIds = Array.from(columnStart.songIds);
+        startSongIds.splice(source.index, 1);
+        const newColumnStart = {
+            ...columnStart,
+            songIds: startSongIds
+        }
+
+        const endSongIds = Array.from(columnEnd.songIds);
+        endSongIds.splice(destination.index, 0, draggableId);
+        const newColumnEnd = {
+            ...columnEnd,
+            songIds: endSongIds
+        }
+
+        const newState = {
+            ...this.state,
+            columns: {
+                ...this.state.columns,
+                [newColumnStart.id]: newColumnStart,
+                [newColumnEnd.id]: newColumnEnd
+            }
+        }
         this.setState(newState);
-        // Here's where you could send changes to backend
+        
     }
 
     onDragStart = () => {
@@ -63,7 +94,7 @@ class App extends React.Component {
     componentDidMount() {
         document.body.style.background = 'black';
     }
-    
+
     componentDidUpdate() {
         document.body.style.background = 'black';
     }
