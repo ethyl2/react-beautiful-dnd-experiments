@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Droppable } from 'react-beautiful-dnd';
 import Song from './song';
 
 const Container = styled.div`
@@ -22,9 +23,17 @@ export default class Column extends React.Component {
         return(
             <Container>
                 <Title>{this.props.column.title}</Title>
-                <SongList>
-                    {this.props.songs.map(song => <Song key={song.id} song={song} />)}
-                </SongList>
+                <Droppable droppableId={this.props.column.id}>
+                    {(provided) => (
+                    <SongList
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        {this.props.songs.map((song, index) => <Song key={song.id} song={song} index={index} />)}
+                        {provided.placeholder}
+                    </SongList>
+                    )}
+                </Droppable>
             </Container>
         )
     }
