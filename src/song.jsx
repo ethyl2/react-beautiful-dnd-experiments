@@ -3,11 +3,19 @@ import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 
 const Container = styled.div`
-    border: 1px solid green;
+    
     padding: 8px;
     margin-bottom: 8px;
     border-radius: 2px;
     background: #21242C;
+`;
+
+const Name = styled.h3`
+    color: white;
+`;
+
+const Artist = styled.p`
+    color: green;
 `;
  
 
@@ -24,7 +32,12 @@ export default class Song extends React.Component {
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                     >
-                        {this.props.song.content}
+                        <Name>
+                            {this.props.song.name}
+                        </Name>
+                        <Artist>
+                            {this.props.song.artist}
+                        </Artist>
                     </Container>
                 )}
             </Draggable>

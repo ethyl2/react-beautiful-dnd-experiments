@@ -9,10 +9,12 @@ const Container = styled.div`
     border: 1px solid magenta;
     border-radius: 2px;
     color: white;
+    width: 50vw;
 `;
 const Title = styled.h3`
     padding: 8px;
     color: purple;
+    font-size: 5em;
 `;
 const SongList = styled.div`
     padding: 8px

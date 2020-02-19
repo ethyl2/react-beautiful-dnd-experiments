@@ -24,8 +24,10 @@ class App extends React.Component {
 
         const column = this.state.columns[source.droppableId];
         const newSongIds = Array.from(column.songIds);
-        newSongIds.splice(source.index, 1);
-        newSongIds.splice(destination.index, 0, draggableId );
+        // splice(source index, num elements to delete)
+        newSongIds.splice(source.index, 1); //splice modifies the array (as well as returning a new array of what's been cut out)
+        // splice(destination index this time, delete 0 elements, elementToAdd)
+        newSongIds.splice(destination.index, 0, draggableId ); //opt 3rd parameter contains what you want to add
 
         const newColumn = { ...column, songIds: newSongIds };
         const newState = { ...this.state, columns: {
@@ -33,6 +35,7 @@ class App extends React.Component {
         }}
 
         this.setState(newState);
+        // Here's where you could send changes to backend
     }
 
     onDragStart = () => {
