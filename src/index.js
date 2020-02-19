@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '@atlaskit/css-reset';
 import { DragDropContext } from 'react-beautiful-dnd';
+import styled from 'styled-components';
 import initialData from './initial-data';
 import Column from './column';
+
+const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
 
 //3 callbacks can be added to DragDropContext: onDragStart, onDragUpdate, and onDragEnd. Only onDragEnd is required.
 class App extends React.Component {
@@ -54,6 +60,14 @@ class App extends React.Component {
         document.body.style.background = `rgba(128, 0, 128, ${opacity})`;
     }
 
+    componentDidMount() {
+        document.body.style.background = 'black';
+    }
+    
+    componentDidUpdate() {
+        document.body.style.background = 'black';
+    }
+
     render() {
         return (
             <DragDropContext 
@@ -61,12 +75,14 @@ class App extends React.Component {
                 onDragUpdate={this.onDragUpdate}
                 onDragEnd={this.onDragEnd}
                 >
+                <Container>
                 {this.state.columnOrder.map((columnId) => {
                     const column = this.state.columns[columnId];
                     const songs = column.songIds.map(songId => this.state.songs[songId]);
            
                     return <Column key={column.id} column={column} songs={songs} />
                 })}
+                </Container>
             </DragDropContext>
        ) 
     }

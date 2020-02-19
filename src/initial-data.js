@@ -15,9 +15,19 @@ const initialData = {
             id: 'column-1',
             title: 'Playlist',
             songIds: ['song-1', 'song-2', 'song-3', 'song-4', 'song-5', 'song-6', 'song-7', 'song-8', 'song-9']
+        },
+        'column-2': {
+            id: 'column-2',
+            title: 'Pending',
+            songIds: []
+        },
+        'column-3': {
+            id: 'column-3',
+            title: 'Request List',
+            songIds: []
         }
     },
-    columnOrder: ['column-1']
+    columnOrder: ['column-1', 'column-2', 'column-3']
 };
 
 export default initialData;

@@ -9,7 +9,7 @@ const Container = styled.div`
     border: 1px solid magenta;
     border-radius: 2px;
     color: white;
-    width: 50vw;
+    width: 30vw;
     @media (max-width: 500px) {
         width: 80vh;
     }
