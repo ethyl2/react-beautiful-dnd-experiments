@@ -7,7 +7,8 @@ const Container = styled.div`
     padding: 8px;
     margin-bottom: 8px;
     border-radius: 2px;
-    background: #21242C;
+    transition: background 0.2s ease;
+    background: ${props => (props.isDragging?  '#4D5056': '#21242C')};
 `;
 
 const Name = styled.h3`
@@ -26,11 +27,12 @@ export default class Song extends React.Component {
                 draggableId={this.props.song.id}
                 index={this.props.index}
             >
-                {(provided) => (
+                {(provided, snapshot) => (
                     <Container
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
+                        isDragging={snapshot.isDragging}
                     >
                         <Name>
                             {this.props.song.name}

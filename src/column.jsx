@@ -17,7 +17,9 @@ const Title = styled.h3`
     font-size: 5em;
 `;
 const SongList = styled.div`
-    padding: 8px
+    padding: 8px;
+    transition: background 0.2s ease;
+    background: ${props => props.isDraggingOver ? '#0E0E12': 'black'};
 `;
 
 export default class Column extends React.Component {
@@ -26,10 +28,12 @@ export default class Column extends React.Component {
             <Container>
                 <Title>{this.props.column.title}</Title>
                 <Droppable droppableId={this.props.column.id}>
-                    {(provided) => (
+                    {(provided, snapshot) => (
                     <SongList
                         ref={provided.innerRef}
+                        isDraggingOver={snapshot.isDraggingOver}
                         {...provided.droppableProps}
+                        
                     >
                         {this.props.songs.map((song, index) => <Song key={song.id} song={song} index={index} />)}
                         {provided.placeholder}
