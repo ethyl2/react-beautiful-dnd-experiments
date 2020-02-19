@@ -10,8 +10,10 @@ class App extends React.Component {
     state = initialData;
 
     onDragEnd = result => {
-        console.log('ended drag');
-        console.log(result);
+        //console.log('ended drag');
+        document.body.style.fontStyle = 'normal';
+        document.body.style.background = 'inherit';
+        //console.log(result);
         const { destination, source, draggableId } = result;
 
         if (!destination) {
@@ -39,14 +41,24 @@ class App extends React.Component {
     }
 
     onDragStart = () => {
-        console.log('started drag');
+        //console.log('started drag');
+        document.body.style.fontStyle = 'italic';
+        document.body.style.transition = 'background 0.2 ease';
+    }
+
+    onDragUpdate = update => {
+        //console.log('in update');
+        //console.log(update); 
+        const { destination } = update;
+        const opacity = destination ? destination.index / Object.keys(this.state.songs).length : 0;
+        document.body.style.background = `rgba(128, 0, 128, ${opacity})`;
     }
 
     render() {
         return (
             <DragDropContext 
                 onDragStart={this.onDragStart}
-                
+                onDragUpdate={this.onDragUpdate}
                 onDragEnd={this.onDragEnd}
                 >
                 {this.state.columnOrder.map((columnId) => {

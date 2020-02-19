@@ -10,6 +10,9 @@ const Container = styled.div`
     border-radius: 2px;
     color: white;
     width: 50vw;
+    @media (max-width: 500px) {
+        width: 80vh;
+    }
 `;
 const Title = styled.h3`
     padding: 8px;
