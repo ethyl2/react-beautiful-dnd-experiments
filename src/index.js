@@ -5,6 +5,8 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import initialData from './initial-data';
 import Column from './column';
+import Header from './components/Header';
+import AddSong from './components/AddSong';
 
 const Container = styled.div`
     display: flex;
@@ -99,22 +101,49 @@ class App extends React.Component {
         document.body.style.background = 'black';
     }
 
+    addSong = song => {
+        console.log(song);
+        // Add song to song list
+        const songIndex = Object.keys(this.state.songs).length + 1;
+        const newSong = { id: `song-${songIndex}`,
+            name: song.title,
+            artist: song.artist
+        }
+        console.log(newSong);
+        const newSongs = {
+            ...this.state.songs,
+            [`song-${songIndex}`]: newSong
+        }
+        
+        console.log(newSongs);
+        const newState = {
+            ...this.state,
+            songs: newSongs
+
+        }
+        this.setState(newState);
+    }
+
     render() {
         return (
-            <DragDropContext 
-                onDragStart={this.onDragStart}
-                onDragUpdate={this.onDragUpdate}
-                onDragEnd={this.onDragEnd}
-                >
-                <Container>
-                {this.state.columnOrder.map((columnId) => {
-                    const column = this.state.columns[columnId];
-                    const songs = column.songIds.map(songId => this.state.songs[songId]);
-           
-                    return <Column key={column.id} column={column} songs={songs} />
-                })}
-                </Container>
-            </DragDropContext>
+            <div>
+                <Header />
+                <AddSong addSong={this.addSong}/>
+                <DragDropContext 
+                    onDragStart={this.onDragStart}
+                    onDragUpdate={this.onDragUpdate}
+                    onDragEnd={this.onDragEnd}
+                    >
+                    <Container>
+                    {this.state.columnOrder.map((columnId) => {
+                        const column = this.state.columns[columnId];
+                        const songs = column.songIds.map(songId => this.state.songs[songId]);
+            
+                        return <Column key={column.id} column={column} songs={songs} />
+                    })}
+                    </Container>
+                </DragDropContext>
+            </div>
        ) 
     }
 

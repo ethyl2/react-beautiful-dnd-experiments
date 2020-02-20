@@ -19,7 +19,7 @@ const Container = styled.div`
 const Title = styled.h3`
     padding: 8px;
     color: purple;
-    font-size: 5em;
+    font-size: 3em;
 `;
 const SongList = styled.div`
     padding: 8px;
