@@ -114,9 +114,7 @@ class App extends React.Component {
             ...this.state.songs,
             [`song-${songIndex}`]: newSong
         }
-        
         //console.log(newSongs);
-        
         
 
         //Add song to pending list
@@ -129,7 +127,7 @@ class App extends React.Component {
         const newColumns = {
             ...this.state.columns, ['column-2'] : newPendingColumn
             }
-        console.log(newColumns);
+        //console.log(newColumns);
 
         const newState = {
             ...this.state,

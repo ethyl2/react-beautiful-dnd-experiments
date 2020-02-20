@@ -50,6 +50,7 @@ const AddSong = props => {
         e.preventDefault();
         console.log(input);
         props.addSong(input);
+        setInput({title: '', artist: ''});
     }
 
     return (
