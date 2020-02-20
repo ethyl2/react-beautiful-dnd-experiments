@@ -14,7 +14,7 @@ const initialData = {
         'column-1': {
             id: 'column-1',
             title: 'Playlist',
-            songIds: ['song-1', 'song-2', 'song-3', 'song-4', 'song-5', 'song-6', 'song-7', 'song-8', 'song-9']
+            songIds: []
         },
         'column-2': {
             id: 'column-2',
@@ -24,7 +24,7 @@ const initialData = {
         'column-3': {
             id: 'column-3',
             title: 'Request List',
-            songIds: []
+            songIds: ['song-1', 'song-2', 'song-3', 'song-4', 'song-5', 'song-6', 'song-7', 'song-8', 'song-9']
         }
     },
     columnOrder: ['column-1', 'column-2', 'column-3']
