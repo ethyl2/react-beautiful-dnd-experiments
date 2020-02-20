@@ -102,26 +102,43 @@ class App extends React.Component {
     }
 
     addSong = song => {
-        console.log(song);
+        //console.log(song);
         // Add song to song list
         const songIndex = Object.keys(this.state.songs).length + 1;
         const newSong = { id: `song-${songIndex}`,
             name: song.title,
             artist: song.artist
         }
-        console.log(newSong);
+        //console.log(newSong);
         const newSongs = {
             ...this.state.songs,
             [`song-${songIndex}`]: newSong
         }
         
-        console.log(newSongs);
+        //console.log(newSongs);
+        
+        
+
+        //Add song to pending list
+        const newSongArray = [...this.state.columns['column-2']['songIds'], `song-${songIndex}`];
+        //console.log(newSongArray); 
+
+        const newPendingColumn = {...this.state.columns['column-2'], songIds: newSongArray};
+        //console.log(newPendingColumn);
+
+        const newColumns = {
+            ...this.state.columns, ['column-2'] : newPendingColumn
+            }
+        console.log(newColumns);
+
         const newState = {
             ...this.state,
-            songs: newSongs
-
+            songs: newSongs,
+            columns: newColumns
         }
+
         this.setState(newState);
+        
     }
 
     render() {
