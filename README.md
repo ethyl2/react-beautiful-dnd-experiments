@@ -2,6 +2,8 @@
 
 Deployed at https://big-band-playlist.surge.sh/
 
+Uses the react-beautiful-dnd package: https://github.com/atlassian/react-beautiful-dnd
+
 ---------------------------------------------------------
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
